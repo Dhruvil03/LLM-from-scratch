@@ -1,1 +1,1 @@
-# OrionGPT
+# LLM-from-scratch
