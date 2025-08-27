@@ -74,13 +74,6 @@ print(generated_text)
 | Vocabulary Size | 50,257 |
 | Max Sequence Length | 256 |
 
-## 📊 Training Details
-
-- **Optimizer**: AdamW with weight decay
-- **Learning Rate**: Cosine annealing with warmup
-- **Batch Size**: 32 (adjustable based on GPU memory)
-- **Gradient Clipping**: Max norm of 1.0
-- **Mixed Precision**: FP16 training support
 
 ## 🔧 Configuration
 
