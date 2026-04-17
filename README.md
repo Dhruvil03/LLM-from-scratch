@@ -63,6 +63,54 @@ print(generated_text)
 - **Layer Normalization**: Applied before each sub-layer (Pre-LN)
 - **Residual Connections**: Skip connections around each sub-layer
 
+```text
+Input text
+   │
+   ├── Tokenization
+   │      text → token IDs
+   │
+   ├── Token Embedding
+   │      Embedding(vocab_size=50257, emb_dim=768)
+   │
+   ├── Positional Embedding
+   │      Embedding(context_length=1024, emb_dim=768)
+   │
+   ├── Add token + position embeddings
+   │
+   ├── Dropout(0.1)
+   │
+   ├── 12 × Transformer Blocks
+   │      Each block:
+   │
+   │      Input x
+   │        │
+   │        ├── LayerNorm
+   │        ├── Masked Multi-Head Self-Attention
+   │        │      • 12 heads
+   │        │      • causal mask (can only see past tokens)
+   │        ├── Dropout
+   │        ├── Residual Add
+   │        │
+   │        ├── LayerNorm
+   │        ├── Feed Forward Network
+   │        │      Linear(768 → 3072)
+   │        │      GELU
+   │        │      Linear(3072 → 768)
+   │        ├── Dropout
+   │        └── Residual Add
+   │
+   ├── Final LayerNorm
+   │
+   ├── Output Head
+   │      Linear(768 → 50257)
+   │
+   └── Logits over vocabulary
+          ↓
+     Next-token prediction
+          ↓
+     Autoregressive text generation
+```
+
 ### Model Specifications
 
 | Parameter | Default Value |
